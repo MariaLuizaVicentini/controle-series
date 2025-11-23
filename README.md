@@ -53,8 +53,8 @@ Você deve ver o arquivo com tamanho **0 bytes**.
 Ajuste estas linhas no arquivo `.env`:
 
     DB_CONNECTION=sqlite
-    DB_DATABASE=database/database.sqlite
-
+    DB_DATABASE=C:\projetos-laravel\controle-series\database\database.sqlite
+O caminho do database precisar ser o caminho completo, se não o laravel apresentará um problema na conexão com o BD
 ------------------------------------------------------------------------
 
 ### 4️⃣ Essas configurações não vão pro Git
