@@ -8,15 +8,15 @@ Principais dependências e versões do projeto:
 -   **PHP:** 7.4.3\
 -   **Composer:** 2.8.12\
 -   **Bootstrap:** 4.3
+-   **Fontawesome:** 5.8.1
+
 
 ------------------------------------------------------------------------
 
 ## 🗄️ Banco de Dados --- SQLite
 
 Este projeto utiliza **SQLite** para simplificar o ambiente de
-desenvolvimento.\
-O arquivo do banco **não é commitado no Git** e deve ser criado
-manualmente sempre que você clonar o projeto em outra máquina.
+desenvolvimento.
 
 ------------------------------------------------------------------------
 
@@ -30,21 +30,11 @@ manualmente sempre que você clonar o projeto em outra máquina.
 
 ### 2️⃣ Crie o arquivo do SQLite
 
-No PowerShell (Windows) ou terminal (Linux/Mac), execute dentro do
-diretório raiz do projeto:
+Seleciona a pasta 'database' e crie manualmente um arquivo com o nome:
 
--   **Windows (PowerShell):**
-
-``` powershell
-New-Item -Path "database/database.sqlite" -ItemType File
-```
-
-Você deve ver o arquivo com tamanho **0 bytes**.
-
-> Obs.: O ícone do arquivo no VSCode pode aparecer como `.txt` por
-> padrão --- isso **não** indica que o arquivo está inválido. O
-> importante é que o arquivo tenha 0 bytes e tenha sido criado pelo
-> comando acima.
+    ``` bash
+    database.sqlite
+    ```
 
 ------------------------------------------------------------------------
 
@@ -52,9 +42,13 @@ Você deve ver o arquivo com tamanho **0 bytes**.
 
 Ajuste estas linhas no arquivo `.env`:
 
+    ``` bash
     DB_CONNECTION=sqlite
     DB_DATABASE=C:\projetos-laravel\controle-series\database\database.sqlite
-O caminho do database precisar ser o caminho completo, se não o laravel apresentará um problema na conexão com o BD
+    ```
+
+- O caminho BD_DATABASE precisar ser o caminho completo, se não o laravel apresentará um problema na conexão com o BD
+
 ------------------------------------------------------------------------
 
 ### 4️⃣ Essas configurações não vão pro Git
@@ -97,6 +91,5 @@ php artisan serve
 2.  arquivo criado via terminal\
 3.  limpar cache\
 4.  rodar migrations\
-5.  VSCode não interfere no SQLite
 
 ------------------------------------------------------------------------
