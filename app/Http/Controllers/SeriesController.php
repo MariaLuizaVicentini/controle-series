@@ -17,9 +17,8 @@ class SeriesController extends Controller
         return view('series.index', compact('series', 'mensagem'));
     }
 
-    public function create()
-    {
-        return view('series.create');
+    public function create() {
+        return view( 'series.create');
     }
 
     public function store(SeriesFormRequest $request) 
