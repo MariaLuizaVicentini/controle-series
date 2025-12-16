@@ -4,9 +4,13 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Symfony\Component\HttpFoundation\Session\Flash\FlashBag;
 
 class Temporada extends Model
 {
+    protected $fillable = ['numero'];
+    public $timestamps = false;
+
     public function episodios() 
     {
         return $this->hasMany(Episodio::class);
