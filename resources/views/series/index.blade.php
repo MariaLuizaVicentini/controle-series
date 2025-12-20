@@ -17,7 +17,7 @@
     <ul class="list-group">
         @foreach($series as $serie)    
         <li class="list-group-item d-flex justify-content-between align-items-center">
-            <span id="id-nome-serie-{{ $serie->id }}">{{ $serie->nome}}</span>
+            <span id="nome-serie-{{ $serie->id }}">{{ $serie->nome}}</span>
             
             <div class="input-group w-50" hidden id="input-nome-serie-{{ $serie->id }}">
                 <input type="text" class="form-control" value="{{ $serie->nome }}">
@@ -50,8 +50,9 @@
 
     <script>
         function toggleInput(serieId) {
-            const nomeSerieEl = document.getElementById(`id-nome-serie-${serieId}`);
+            const nomeSerieEl = document.getElementById(`nome-serie-${serieId}`);
             const inputSerieEl = document.getElementById(`input-nome-serie-${serieId}`);
+            
             
             if (nomeSerieEl.hasAttribute('hidden')) {
                 nomeSerieEl.removeAttribute('hidden');
@@ -60,6 +61,26 @@
                 inputSerieEl.removeAttribute('hidden');
                 nomeSerieEl.hidden = true;
             }
+        }
+        
+        function editarSerie(serieId) {
+            let formData = new FormData();
+            const nome = document.querySelector(`#input-nome-serie-${serieId} > input`).value;
+            const token = document.querySelector(['input[name="_token"]']).value;
+
+            formData.append('nome', nome);
+            formData.append('_token', token);
+
+            const url = `/series/${serieId}/editaNome`;
+            fetch(url, {
+                body: formData,
+                method: 'POST'
+            }).then(() => {
+                toggleInput(serieId);
+                document.getElementById(`nome-serie-${serieId}`).textContent = nome;
+
+
+            });
         }
     </script>
 @endsection
