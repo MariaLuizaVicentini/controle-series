@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Collection;
 use Symfony\Component\HttpFoundation\Session\Flash\FlashBag;
 
 class Temporada extends Model
@@ -11,13 +12,21 @@ class Temporada extends Model
     protected $fillable = ['numero'];
     public $timestamps = false;
 
+    public function serie()
+    {
+        return $this->belongsTo(Serie::class);
+    }
+
     public function episodios() 
     {
         return $this->hasMany(Episodio::class);
     }
 
-    public function serie()
+
+    public function getEpisodiosAssistidos() : Collection
     {
-        return $this->belongsTo(Serie::class);
+        return $this->episodios->filter(function (Episodio $episodio) {
+            return $episodio->assistido;
+        });
     }
 }
