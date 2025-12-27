@@ -5,6 +5,7 @@ use App\Http\Controllers\TemporadasController;
 use App\Http\Controllers\EpisodiosController;
 use App\Http\Controllers\EntrarController;
 use Illuminate\Support\Facades\Route;
+use Illuminate\Support\Facades\Auth;
 
 
 Route::get('/series', [SeriesController::class, 'index'])
