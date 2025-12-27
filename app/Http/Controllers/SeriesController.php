@@ -8,11 +8,17 @@ use App\Models\Episodio;
 use App\Services\CriadorDeSerie;
 use App\Services\RemovedorDeSerie;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class SeriesController extends Controller 
 {
+    public function __construct() {
+        $this->middleware('auth');
+    }
+    
     public function index(Request $request) 
     {
+
         $series = Serie::query()
             ->orderBy('nome')
             ->get();
@@ -27,6 +33,7 @@ class SeriesController extends Controller
 
     public function store(SeriesFormRequest $request, CriadorDeSerie $criadorDeSerie) 
     {
+
         $serie = $criadorDeSerie->criarSeries(
             $request->nome,
             $request->qtd_temporadas,
