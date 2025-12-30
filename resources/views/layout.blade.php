@@ -10,6 +10,10 @@
       crossorigin="anonymous">
 </head>
 <body>
+    <nav class="navbar navbar-expand-lg navbar-ligth bg-light mb-2 d-flex justify-content-between">
+        <a href="{{ route('listar_series') }}" class="navbar-brand">Home</a>
+        <a href="/sair" class="text-danger">Sair</a>
+    </nav>
     <div class="container">
         <div class="jumbotron">
             <h1>@yield('cabecalho')</h1>
