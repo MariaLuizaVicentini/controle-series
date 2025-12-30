@@ -13,20 +13,25 @@ Route::get('/series', [SeriesController::class, 'index'])
 ->name('listar_series');
 
 Route::get('/series/criar', [SeriesController::class, 'create'])
-->name('form_criar_serie');
+->name('form_criar_serie')
+->middleware('auth');
 
-Route::post('/series/criar', [SeriesController::class, 'store']);
+Route::post('/series/criar', [SeriesController::class, 'store'])
+->middleware('auth');
 
-Route::delete('/series/{id}', [SeriesController::class, 'destroy']);
+Route::delete('/series/{id}', [SeriesController::class, 'destroy'])
+->middleware('auth');
 
-Route::post('/series/{id}/editaNome', [SeriesController::class, 'editaNome']);
+Route::post('/series/{id}/editaNome', [SeriesController::class, 'editaNome'])
+->middleware('auth');
 
 
 Route::get('/series/{serieId}/temporadas', [TemporadasController::class, 'index']);
 
 Route::get('/temporadas/{temporada}/episodios', [EpisodiosController::class, 'index']);
 
-Route::post('/temporadas/{temporada}/episodios/assistir', [EpisodiosController::class, 'assistir']);
+Route::post('/temporadas/{temporada}/episodios/assistir', [EpisodiosController::class, 'assistir'])
+->middleware('auth');
 
 Auth::routes();
 
