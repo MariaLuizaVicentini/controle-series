@@ -37,3 +37,8 @@ Route::post('/entrar', [EntrarController::class, 'entrar']);
 
 Route::get('/registrar', [RegistroController::class, 'create']);
 Route::post('/registrar', [RegistroController::class, 'store']);
+
+Route::get('/sair', function () {
+    \Illuminate\Support\Facades\Auth::logout();
+    return redirect('/entrar');
+});
