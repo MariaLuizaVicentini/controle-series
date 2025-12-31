@@ -1,71 +1,128 @@
-<p align="center"><img src="https://laravel.com/assets/img/components/logo-laravel.svg"></p>
+# 📘 Configuração do Projeto Laravel com SQLite
 
-<p align="center">
-<a href="https://travis-ci.org/laravel/framework"><img src="https://travis-ci.org/laravel/framework.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://poser.pugx.org/laravel/framework/d/total.svg" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://poser.pugx.org/laravel/framework/v/stable.svg" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://poser.pugx.org/laravel/framework/license.svg" alt="License"></a>
-</p>
+Este repositório contém um projeto desenvolvido em **Laravel**, configurado para utilizar **SQLite** como banco de dados, com foco em **simplicidade e agilidade no ambiente de desenvolvimento**.
 
-## About Laravel
+---
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+## 🛠️ Tecnologias Utilizadas
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+Principais tecnologias e versões utilizadas no projeto:
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
+* **Laravel:** 8.83.29
+* **PHP:** 7.4.3
+* **Composer:** 2.8.12
+* **Bootstrap:** 4.3
+* **Font Awesome:** 5.8.1
 
-## Learning Laravel
+---
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework.
+## 🗄️ Banco de Dados — SQLite
 
-If you don't feel like reading, [Laracasts](https://laracasts.com) can help. Laracasts contains over 1100 video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost you and your team's skills by digging into our comprehensive video library.
+O projeto utiliza **SQLite** como banco de dados para facilitar a configuração local, evitando a necessidade de instalação e configuração de servidores como MySQL ou PostgreSQL.
 
-## Laravel Sponsors
+> 📌 Cada desenvolvedor deve criar seu próprio arquivo de banco de dados localmente.
 
-We would like to extend our thanks to the following sponsors for funding Laravel development. If you are interested in becoming a sponsor, please visit the Laravel [Patreon page](https://patreon.com/taylorotwell).
+---
 
-- **[Vehikl](https://vehikl.com/)**
-- **[Tighten Co.](https://tighten.co)**
-- **[Kirschbaum Development Group](https://kirschbaumdevelopment.com)**
-- **[64 Robots](https://64robots.com)**
-- **[Cubet Techno Labs](https://cubettech.com)**
-- **[Cyber-Duck](https://cyber-duck.co.uk)**
-- **[British Software Development](https://www.britishsoftware.co)**
-- **[Webdock, Fast VPS Hosting](https://www.webdock.io/en)**
-- **[DevSquad](https://devsquad.com)**
-- [UserInsights](https://userinsights.com)
-- [Fragrantica](https://www.fragrantica.com)
-- [SOFTonSOFA](https://softonsofa.com/)
-- [User10](https://user10.com)
-- [Soumettre.fr](https://soumettre.fr/)
-- [CodeBrisk](https://codebrisk.com)
-- [1Forge](https://1forge.com)
-- [TECPRESSO](https://tecpresso.co.jp/)
-- [Runtime Converter](http://runtimeconverter.com/)
-- [WebL'Agence](https://weblagence.com/)
-- [Invoice Ninja](https://www.invoiceninja.com)
-- [iMi digital](https://www.imi-digital.de/)
-- [Earthlink](https://www.earthlink.ro/)
-- [Steadfast Collective](https://steadfastcollective.com/)
-- [We Are The Robots Inc.](https://watr.mx/)
-- [Understand.io](https://www.understand.io/)
-- [Abdel Elrafa](https://abdelelrafa.com)
+## ⚙️ Configuração do SQLite (Passo a Passo)
 
-## Contributing
+### 1️⃣ Verifique a existência da pasta `database/`
 
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
+Essa pasta é padrão do Laravel. Caso não exista, crie-a manualmente na raiz do projeto:
 
-## Security Vulnerabilities
+```bash
+database/
+```
 
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
+---
 
-## License
+### 2️⃣ Crie o arquivo do banco SQLite
 
-The Laravel framework is open-source software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+Dentro da pasta `database/`, crie manualmente um arquivo chamado:
+
+```bash
+database.sqlite
+```
+
+---
+
+### 3️⃣ Configure o arquivo `.env`
+
+No arquivo `.env`, ajuste as seguintes variáveis:
+
+```bash
+DB_CONNECTION=sqlite
+DB_DATABASE=C:\projetos-laravel\controle-series\database\database.sqlite
+```
+
+🔹 **Importante:**
+O valor de `DB_DATABASE` deve conter o **caminho absoluto completo** até o arquivo `database.sqlite`. Caso contrário, o Laravel poderá apresentar erro de conexão com o banco de dados.
+
+---
+
+### 4️⃣ Arquivos ignorados pelo Git
+
+O arquivo `database/database.sqlite` **não é versionado** e está incluído no `.gitignore`.
+
+✔️ Cada máquina deve criar o seu próprio banco localmente.
+
+---
+
+## 🔐 Geração da chave da aplicação
+
+Ao clonar o projeto, a chave de criptografia do Laravel (**APP_KEY**) não vem configurada.
+
+### Como gerar a chave:
+
+No terminal, execute:
+
+```bash
+php artisan key:generate
+```
+
+Esse comando irá gerar automaticamente uma nova chave e salvá-la no campo `APP_KEY` dentro do arquivo `.env`.
+
+---
+
+## 📁 Estrutura recomendada do projeto
+
+```text
+/app
+/bootstrap
+/config
+/database
+    └─ database.sqlite   ← criado manualmente (ignorado pelo Git)
+/public
+/resources
+/routes
+/vendor
+.env
+```
+
+---
+
+## 🧪 Testando a aplicação
+
+Após concluir as etapas acima, execute os comandos abaixo:
+
+```bash
+php artisan config:clear
+php artisan migrate
+php artisan serve
+```
+
+A aplicação estará disponível no endereço exibido no terminal (geralmente `http://127.0.0.1:8000`).
+
+---
+
+## ✅ Checklist rápido
+
+Antes de rodar o projeto, confirme:
+
+* ✔️ Arquivo `.env` configurado corretamente
+* ✔️ Arquivo `database.sqlite` criado
+* ✔️ `APP_KEY` gerada
+* ✔️ Cache de configuração limpo
+* ✔️ Migrations executadas
+
+---
