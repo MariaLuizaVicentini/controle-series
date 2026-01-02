@@ -10,34 +10,54 @@
 | contains the "web" middleware group. Now create something great!
 |
 */
-Route::get('/series', 'SeriesController@index')
+
+use App\Http\Controllers\SeriesController;
+use App\Http\Controllers\TemporadasController;
+use App\Http\Controllers\EpisodiosController;
+use App\Http\Controllers\EntrarController;
+use App\Http\Controllers\RegistroController;
+use Illuminate\Support\Facades\Route;
+use Illuminate\Support\Facades\Auth;
+use App\Http\Controllers\HomeController;
+
+Route::get('/series', [SeriesController::class, 'index'])
     ->name('listar_series');
-Route::get('/series/criar', 'SeriesController@create')
+
+Route::get('/series/criar', [SeriesController::class, 'create'])
     ->name('form_criar_serie')
     ->middleware('autenticador');
-Route::post('/series/criar', 'SeriesController@store')
-    ->middleware('autenticador');
-Route::delete('/series/{id}', 'SeriesController@destroy')
-    ->middleware('autenticador');
-Route::post('/series/{id}/editaNome', 'SeriesController@editaNome')
+
+Route::post('/series/criar', [SeriesController::class ,'store'])
     ->middleware('autenticador');
 
-Route::get('/series/{serieId}/temporadas', 'TemporadasController@index');
-
-Route::get('/temporadas/{temporada}/episodios', 'EpisodiosController@index');
-
-Route::post('/temporadas/{temporada}/episodios/assistir', 'EpisodiosController@assistir')
+Route::delete('/series/{id}', [SeriesController::class, 'destroy'])
     ->middleware('autenticador');
-Auth::routes();
 
-Route::get('/home', 'HomeController@index')->name('home');
+Route::post('/series/{id}/editaNome', [SeriesController::class, 'editaNome'])
+    ->middleware('autenticador');
 
-Route::get('/entrar', 'EntrarController@index');
-Route::post('/entrar', 'EntrarController@entrar');
-Route::get('/registrar', 'RegistroController@create');
-Route::post('/registrar', 'RegistroController@store');
+Route::get('/series/{serieId}/temporadas', [TemporadasController::class, 'index']);
+
+Route::get('/temporadas/{temporada}/episodios', [EpisodiosController::class, 'index']);
+
+Route::post('/temporadas/{temporada}/episodios/assistir', [EpisodiosController::class,'assistir'])
+    ->middleware('autenticador');
+
+    Auth::routes();
+
+Route::get('/home', [HomeController::class,'index'])->name('home');
+
+Route::get('/entrar', [EntrarController::class, 'index']);
+
+Route::post('/entrar', [EntrarController::class, 'entrar']);
+Route::get('/registrar', [RegistroController::class, 'create']);
+Route::post('/registrar', [RegistroController::class, 'store']);
 
 Route::get('/sair', function () {
     \Illuminate\Support\Facades\Auth::logout();
     return redirect('/entrar');
+});
+
+Route::get('/visualizando-email', function () {
+    return new \App\Mail\NovaSerie();
 });
