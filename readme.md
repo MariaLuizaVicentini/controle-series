@@ -8,9 +8,9 @@ Este repositório contém um projeto desenvolvido em **Laravel**, configurado pa
 
 Principais tecnologias e versões utilizadas no projeto:
 
-* **Laravel:** 8.83.29
+* **Laravel:** 5.8.38
 * **PHP:** 7.4.3
-* **Composer:** 2.8.12
+* **Composer:** 2.9.1
 * **Bootstrap:** 4.3
 * **Font Awesome:** 5.8.1
 
