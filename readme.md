@@ -115,14 +115,19 @@ A aplicação estará disponível no endereço exibido no terminal (geralmente `
 
 ---
 
-## ✅ Checklist rápido
+## Configurando Envio de E-mail usando EmailTrap
 
-Antes de rodar o projeto, confirme:
 
-* ✔️ Arquivo `.env` configurado corretamente
-* ✔️ Arquivo `database.sqlite` criado
-* ✔️ `APP_KEY` gerada
-* ✔️ Cache de configuração limpo
-* ✔️ Migrations executadas
+```.env
+
+MAIL_MAILER=smtp
+MAIL_HOST=sandbox.smtp.mailtrap.io
+MAIL_PORT=2525
+MAIL_USERNAME=pegar_no_mailtrap
+MAIL_PASSWORD=pegar_no_mailtrap
+MAIL_ENCRYPTION=tls
+MAIL_FROM_ADDRESS=email_remetente
+MAIL_FROM_NAME="${APP_NAME}"
+```
 
 ---
