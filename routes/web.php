@@ -20,6 +20,7 @@ use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Auth;
 use App\Http\Controllers\HomeController;
 
+
 Route::get('/series', [SeriesController::class, 'index'])
     ->name('listar_series');
 
@@ -64,4 +65,22 @@ Route::get('/visualizando-email', function () {
         5,
         10
     );
+});
+
+Route::get('/enviando-email', function () {
+    $email =  new \App\Mail\NovaSerie(
+        'Arrow' ,
+            5,
+            10
+    );
+
+    $email->subject = 'Nova Série Adicionada';
+
+    $user = (object) [
+        'email' => 'vicentinimalu1@gmail.com',
+        'name' => 'malu'
+    ];
+
+    Illuminate\Support\Facades\Mail::to($user)->send($email);
+    return 'Email enviado com sucesso!';
 });
